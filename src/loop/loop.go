@@ -29,7 +29,11 @@ func main() {
 	fmt.Println(sum2)
 
 	fmt.Println("--- for(無限ループ処理) ---")
-	for {
-		fmt.Println("Hi!!!")
-	}
+	// for {
+	// 	fmt.Println("Hi!!!")
+	// }
+
+	fmt.Println("--- 2の平方根 ---")
+	fmt.Println(Sqrt(2))      // A -> 1.4166666666666667
+	fmt.Println(math.Sqrt(2)) // A -> 1.4142135623730951
 }
