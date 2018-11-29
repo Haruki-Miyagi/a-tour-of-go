@@ -5,9 +5,10 @@ import (
 	"net/http" // HTTPプロトコルを利用してくれるpackage(HTTPサーバーを実装するために必要な機能が提供されている)
 )
 
-// http package を使用しており,このような関数の形に書ける(handler関数)
-// *http.Request型のrequestはアドレスから受け取ったパラメータを使用できる
-//  L (現在のプログラムでは使用していない`/hogeとした場合にパラメータとして取得できる`) -> request.URL.Path[0:] /hogeと出力できる
+// http package を使用しており,このような関数(handler関数)の形に書ける
+// 第一引数のhttp.ResponseWriter型writerはレスポンスの書き込む
+// 第二引数の*http.Request型のrequestはアドレスから受け取ったパラメータを使用できる
+//  L 現在のプログラムでは使用していない(`/hoge` (HandleFunc関数の第一引数を)とした場合にパラメータとして取得できる) -> request.URL.Path[0:] で取得できる。
 func handler(writer http.ResponseWriter, request *http.Request) {
 	// Helloworld をいう文字列をhttp.ResponseWriter型のwriterに入れて渡す。
 	fmt.Fprintf(writer, "Hello World!")
@@ -18,8 +19,7 @@ func main() {
 	// つまりパスを指定してどう行った動きにするかハンドリングする
 	http.HandleFunc("/", handler) // ここのhandlerはmain.go:11のhandler関数を表している。
 
-	// サーバーを自分のPCのなかで立ち上げている
-	// このおかげでgo run main.go をすると立ち上げたまま待機状態になる
+	// サーバーを自分のPCのなか(localhost)で立ち上げており、go run main.go を叩くと立ち上げたまま待機状態になる
 	// 第一引数にport番号を渡す文字列 -> 8080 ( goでは8000や8080が多い )
 	// 第二引数にnil -> DefaultServeMux が Handler として指定
 	http.ListenAndServe(":8080", nil)
