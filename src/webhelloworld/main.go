@@ -11,7 +11,8 @@ import (
 //  L 現在のプログラムでは使用していない(`/hoge` (HandleFunc関数の第一引数を)とした場合にパラメータとして取得できる) -> request.URL.Path[0:] で取得できる。
 func handler(writer http.ResponseWriter, request *http.Request) {
 	// Helloworld をいう文字列をhttp.ResponseWriter型のwriterに入れて渡す。
-	fmt.Fprintf(writer, "Hello World!")
+	fmt.Fprintln(writer, "Hello World!")
+	fmt.Fprintf(writer, "Hello World!, %s", request.URL.Path[1:])
 }
 
 func main() {
